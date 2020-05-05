@@ -1,4 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proceries/screens/HomeView.dart';
+import 'package:proceries/screens/AddRecipeView.dart';
 
-void main() => runApp(HomeView());
+void main() => runApp(AddRecipeView());

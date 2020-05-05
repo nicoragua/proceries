@@ -1,0 +1,42 @@
+*General Idea*
+  Name: PROceries
+  Concept: Grocery shopping aid that facilitates shopping groceries on a recipie basis with weekly planner
+
+
+Mockup
+  -Basic Mockup & Wireframing
+  -Light/Dark Design
+  -Sources
+    --https://buildfire.com/how-to-create-a-mobile-app/
+    --https://learnappmaking.com/how-to-make-an-app/
+    --https://www.smashingmagazine.com/2018/02/comprehensive-guide-to-mobile-app-design/
+
+
+Design
+  -Colour Palette
+  -App Icon
+  -Images
+    --TOMato
+    --onION
+    --About Image
+    --Background grocery list
+  -Sources
+    --https://dribbble.com/tags/app_layout
+    --https://en.99designs.de/blog/web-digital/how-to-design-an-app/#wireframe
+    --https://learn.g2.com/app-design
+
+Content
+  -Home
+    --Welcome Text
+    --Grocery List
+  -Recipies
+    --
+  -Planner
+    --Weekday
+    --3x Slots/days
+  -About
+    --This App
+    --Version
+    --Donation
+    --Impressum
+  -English/German

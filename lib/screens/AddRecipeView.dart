@@ -17,9 +17,19 @@ class _AddRecipeViewState extends State<AddRecipeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Title"),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(50, 14, 102, 85),
+        title: Text("Title"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: <Color>[
+                    Color(0xFF2ED4B5),
+                    Color(0xFF2F4241),
+                  ])
+          ),
+        ),
       ),
       body: ListView(children: <Widget>[
         ListView.builder(

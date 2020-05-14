@@ -25,10 +25,10 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: <Color>[
-                    Color(0xFF2ED4B5),
-                    Color(0xFF2F4241),
-                  ])
-          ),
+                Color(0xFF2F4241),
+                Color(0xFF2ED4B5),
+                Color(0xFF2F4241),
+              ])),
         ),
       ),
       body: ListView(children: <Widget>[
@@ -50,52 +50,77 @@ class _AddRecipeViewState extends State<AddRecipeView> {
             onPressed: () => showDialog(
                 context: context,
                 builder: (context) {
-                  return Dialog(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: <Widget>[
-                          Text("Ingredient Name"),
-                          TextField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'name',
+                  return SimpleDialog(
+                    title: Text("New Ingredient"),
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: <Widget>[
+                            TextField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'name',
+                              ),
                             ),
-                          ),
-                          Text("Amount"),
-                          Row(
-                            children: <Widget>[
-                              Expanded(
-                                flex: 2,
-                                child: TextField(
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'amount',
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 2,
+                                  child: TextField(
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'amount',
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: DropdownButton(
-                                  value: "total",
-                                  items: <String>[
-                                    "total",
-                                    "gram",
-                                    "mililiter"
-                                  ].map<DropdownMenuItem<String>>((String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
+                                Expanded(
+                                  flex: 1,
+                                  child: DropdownButton(
+                                    value: "total",
+                                    items: <String>[
+                                      "total",
+                                      "gram",
+                                      "mililiter"
+                                    ].map<DropdownMenuItem<String>>(
+                                        (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                FlatButton(
+                                  child: Text("Add"),
+                                  onPressed: () {
+                                    // TODO
+                                  },
+                                ),
+                                FlatButton(
+                                  child: Text("Cancel"),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+                    ],
                   );
                 })),
       ]),

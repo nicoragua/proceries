@@ -9,24 +9,25 @@ class AddRecipeView extends StatefulWidget {
 }
 
 class _AddRecipeViewState extends State<AddRecipeView> {
-  String name;
+  String _name;
 
-  final nameController = TextEditingController();
-  final amountController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _amountController = TextEditingController();
 
-  var items = ["pc.", "gram", "mililiter"];
+  var _items = ["pc.", "gram", "mililiter"];
+  var _currentSelectedItem = "pc.";
 
   @override
   void dispose() {
-    nameController.dispose();
-    amountController.dispose();
+    _nameController.dispose();
+    _amountController.dispose();
     super.dispose();
   }
 
   List<Ingredient> ingredients = new List<Ingredient>();
 
   _AddRecipeViewState(String title) {
-    this.name = title;
+    this._name = title;
   }
 
   @override
@@ -34,7 +35,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(name),
+        title: Text(_name),
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -73,7 +74,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                         child: Column(
                           children: <Widget>[
                             TextField(
-                              controller: nameController,
+                              controller: _nameController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'name',
@@ -87,7 +88,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                                 Expanded(
                                   flex: 2,
                                   child: TextField(
-                                    controller: amountController,
+                                    controller: _amountController,
                                     keyboardType: TextInputType.number,
                                     inputFormatters: <TextInputFormatter>[
                                       WhitelistingTextInputFormatter.digitsOnly
@@ -98,17 +99,27 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                                     ),
                                   ),
                                 ),
+                                SizedBox(
+                                  width: 10,
+                                ),
                                 Expanded(
                                   flex: 1,
                                   child: DropdownButton<String>(
                                     items:
-                                        items.map((String dropDownStringItem) {
+                                        _items.map((String dropDownStringItem) {
                                       return DropdownMenuItem<String>(
                                         value: dropDownStringItem,
                                         child: Text(dropDownStringItem),
                                       );
                                     }).toList(),
-                                    value: items[0],
+
+                                    onChanged: (String newSelectedItem) {
+                                      setState(() {
+                                        this._currentSelectedItem = newSelectedItem;
+                                      });
+                                    },
+
+                                    value: _currentSelectedItem,
                                   ),
                                 ),
                               ],
@@ -122,15 +133,15 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                                 FlatButton(
                                   child: Text("Add"),
                                   onPressed: () {
-                                    if (nameController.text != "" &&
-                                        amountController.text != "") {
+                                    if (_nameController.text != "" &&
+                                        _amountController.text != "") {
                                       setState(() {
                                         ingredients.add(new Ingredient(
-                                            nameController.text,
-                                            amountController.text));
+                                            _nameController.text,
+                                            _amountController.text));
                                       });
-                                      nameController.clear();
-                                      amountController.clear();
+                                      _nameController.clear();
+                                      _amountController.clear();
                                       Navigator.pop(context);
                                     }
                                   },

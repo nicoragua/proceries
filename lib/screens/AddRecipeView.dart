@@ -1,19 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:proceries/models/Ingredient.dart';
 
 class AddRecipeView extends StatefulWidget {
   @override
-  _AddRecipeViewState createState() => _AddRecipeViewState();
+  _AddRecipeViewState createState() => _AddRecipeViewState("Recipe Name");
 }
 
 class _AddRecipeViewState extends State<AddRecipeView> {
-  //TODO get from construction
-  String name = "Title";
+  String name;
 
   final nameController = TextEditingController();
   final amountController = TextEditingController();
 
+  var items = ["pc.", "gram", "mililiter"];
 
   @override
   void dispose() {
@@ -23,6 +24,10 @@ class _AddRecipeViewState extends State<AddRecipeView> {
   }
 
   List<Ingredient> ingredients = new List<Ingredient>();
+
+  _AddRecipeViewState(String title) {
+    this.name = title;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +41,8 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: <Color>[
-                Color(0xFF2F4241),
-                Color(0xFF2ED4B5),
-                Color(0xFF2F4241),
+                Color(0xFFFFDF85),
+                Color(0xFFE4A900),
               ])),
         ),
       ),
@@ -85,6 +89,9 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                                   child: TextField(
                                     controller: amountController,
                                     keyboardType: TextInputType.number,
+                                    inputFormatters: <TextInputFormatter>[
+                                      WhitelistingTextInputFormatter.digitsOnly
+                                    ],
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(),
                                       labelText: 'amount',
@@ -93,19 +100,15 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                                 ),
                                 Expanded(
                                   flex: 1,
-                                  child: DropdownButton(
-                                    value: "total",
-                                    items: <String>[
-                                      "total",
-                                      "gram",
-                                      "mililiter"
-                                    ].map<DropdownMenuItem<String>>(
-                                        (String value) {
+                                  child: DropdownButton<String>(
+                                    items:
+                                        items.map((String dropDownStringItem) {
                                       return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(value),
+                                        value: dropDownStringItem,
+                                        child: Text(dropDownStringItem),
                                       );
                                     }).toList(),
+                                    value: items[0],
                                   ),
                                 ),
                               ],
@@ -119,12 +122,17 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                                 FlatButton(
                                   child: Text("Add"),
                                   onPressed: () {
-                                    setState(() {
-                                      ingredients.add(new Ingredient(nameController.text, amountController.text));
-                                    });
-                                    nameController.clear();
-                                    amountController.clear();
-                                    Navigator.pop(context);
+                                    if (nameController.text != "" &&
+                                        amountController.text != "") {
+                                      setState(() {
+                                        ingredients.add(new Ingredient(
+                                            nameController.text,
+                                            amountController.text));
+                                      });
+                                      nameController.clear();
+                                      amountController.clear();
+                                      Navigator.pop(context);
+                                    }
                                   },
                                 ),
                                 FlatButton(

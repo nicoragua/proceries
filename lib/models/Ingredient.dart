@@ -11,6 +11,8 @@ class Ingredient {
     this.amount = amount;
   }
 
+  String toString() => "$name, $amount";
+
   Ingredient.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         amount = json['amount'];

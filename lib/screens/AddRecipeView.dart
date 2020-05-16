@@ -9,7 +9,18 @@ class AddRecipeView extends StatefulWidget {
 
 class _AddRecipeViewState extends State<AddRecipeView> {
   //TODO get from construction
-  String name;
+  String name = "Title";
+
+  final nameController = TextEditingController();
+  final amountController = TextEditingController();
+
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    amountController.dispose();
+    super.dispose();
+  }
 
   List<Ingredient> ingredients = new List<Ingredient>();
 
@@ -18,7 +29,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Title"),
+        title: Text(name),
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -38,7 +49,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
             return Card(
               child: ListTile(
                 onTap: () {},
-                title: Text(ingredients[i].name),
+                title: Text(ingredients[i].toString()),
               ),
             );
           },
@@ -58,6 +69,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                         child: Column(
                           children: <Widget>[
                             TextField(
+                              controller: nameController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'name',
@@ -71,6 +83,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                                 Expanded(
                                   flex: 2,
                                   child: TextField(
+                                    controller: amountController,
                                     keyboardType: TextInputType.number,
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(),
@@ -106,7 +119,12 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                                 FlatButton(
                                   child: Text("Add"),
                                   onPressed: () {
-                                    // TODO
+                                    setState(() {
+                                      ingredients.add(new Ingredient(nameController.text, amountController.text));
+                                    });
+                                    nameController.clear();
+                                    amountController.clear();
+                                    Navigator.pop(context);
                                   },
                                 ),
                                 FlatButton(

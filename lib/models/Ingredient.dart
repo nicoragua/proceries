@@ -1,17 +1,18 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:proceries/models/Amount.dart';
 
 @JsonSerializable()
 
 class Ingredient {
   String name;
-  var amount;
+  Amount amount;
 
-  Ingredient(String name, var amount)  {
+  Ingredient(String name, Amount amount)  {
     this.name = name;
     this.amount = amount;
   }
 
-  String toString() => "$name, $amount";
+  String toString() => "$name, " + amount.toString();
 
   Ingredient.fromJson(Map<String, dynamic> json)
       : name = json['name'],

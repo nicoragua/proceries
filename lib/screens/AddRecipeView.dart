@@ -198,6 +198,9 @@ class _MyDialogState extends State<MyDialog> {
                   FlatButton(
                     child: Text("Cancel"),
                     onPressed: () {
+                      nameController.clear();
+                      amountController.clear();
+                      _currentSelectedItem = AmountTypes.pc;
                       Navigator.pop(context);
                     },
                   ),

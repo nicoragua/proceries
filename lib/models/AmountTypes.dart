@@ -1,18 +1,19 @@
 enum AmountTypes {
   pc,
   gram,
-  mililiter,
+  milliliter,
 }
 
 extension AmountTypeExtensions on AmountTypes {
+
   String get name {
     switch (this) {
       case AmountTypes.pc:
         return 'pc.';
       case AmountTypes.gram:
         return 'gram';
-      case AmountTypes.mililiter:
-        return "mililiter";
+      case AmountTypes.milliliter:
+        return "milliliter";
     }
   }
 
@@ -22,8 +23,8 @@ extension AmountTypeExtensions on AmountTypes {
         return AmountTypes.pc;
       case "gram":
         return AmountTypes.gram;
-      case "mililiter":
-        return AmountTypes.mililiter;
+      case "milliliter":
+        return AmountTypes.milliliter;
       default:
         return null;
     }

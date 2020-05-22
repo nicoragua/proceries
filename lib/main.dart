@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proceries/screens/AddRecipeView.dart';
+import 'package:proceries/screens/GroceryListView.dart';
 
 void main() => runApp(MaterialApp(
-    home: AddRecipeView(), debugShowCheckedModeBanner: false));
+    home: GroceryListView(), debugShowCheckedModeBanner: false));

@@ -15,10 +15,12 @@ class Amount {
   String toString() => "$value " + amountType.name;
 
   Amount.fromJson(Map<String, dynamic> json)
-      : value = json['value'];
+      : value = json['value'],
+      amountType = json['amountType'];
 
   Map<String, dynamic> toJson() =>
       {
         'value': value,
+        'amountType': amountType,
       };
 }

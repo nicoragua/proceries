@@ -6,10 +6,7 @@ class Recipe {
   String name;
   var ingredients = new List();
 
-  Recipe(String name, var ingredients)  {
-    this.name = name;
-    this.ingredients = ingredients;
-  }
+  Recipe(this.name, this.ingredients);
 
   Recipe.fromJson(Map<String, dynamic> json)
       : name = json['name'],

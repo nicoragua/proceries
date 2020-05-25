@@ -7,10 +7,7 @@ class Ingredient {
   String name;
   Amount amount;
 
-  Ingredient(String name, Amount amount)  {
-    this.name = name;
-    this.amount = amount;
-  }
+  Ingredient(this.name, this.amount);
 
   String toString() => "$name, " + amount.toString();
 

@@ -7,10 +7,7 @@ class Amount {
   var value;
   AmountTypes amountType;
 
-  Amount(var value, AmountTypes amountType) {
-    this.value = value;
-    this.amountType = amountType;
-  }
+  Amount(this.value, this.amountType);
 
   String toString() => "$value " + amountType.name;
 

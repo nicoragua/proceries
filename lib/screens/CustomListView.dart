@@ -18,6 +18,8 @@ class _CustomListViewState extends State<CustomListView> {
   List items;
   var _navigationBar;
 
+  var icon = Icon(Icons.delete);
+
   final _nameController = new TextEditingController();
   final _amountController = new TextEditingController();
 
@@ -56,8 +58,8 @@ class _CustomListViewState extends State<CustomListView> {
                     onTap: () {},
                     title: Text(items[i].toString()),
                     trailing: FlatButton(
-                      child: Icon(Icons.delete),
-                      onLongPress: () {
+                      child: icon,
+                      onPressed: () {
                         setState(() {
                           items.removeAt(i);
                         });

@@ -1,27 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:proceries/models/Ingredient.dart';
 import 'package:proceries/models/Recipe.dart';
 import 'package:proceries/screens/widgets/CustomNavigationBar.dart';
 
 import 'CustomListView.dart';
 
-class HomeView extends StatelessWidget{
+class AddRecipeView extends StatefulWidget{
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Proceries",
-      home: Home(),
-    );
-  }
+  _AddRecipeViewState createState() => _AddRecipeViewState();
 }
 
-class Home extends StatefulWidget{
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  Recipe recipe;
+class _AddRecipeViewState extends State<AddRecipeView> {
+  Recipe recipe = Recipe("Nudeln", new List<Ingredient>());
 
   @override
   Widget build(BuildContext context) {

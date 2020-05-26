@@ -17,7 +17,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
   @override
   Widget build(BuildContext context) {
     return CustomListView(
-      recipe.name, recipe.ingredients, CustomNavigationBar("TODO"),
+      recipe.name, recipe.ingredients, CustomNavigationBar(2),
     );
   }
 }

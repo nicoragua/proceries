@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:proceries/models/Ingredient.dart';
+import 'package:proceries/screens/CustomListView.dart';
+import 'package:proceries/screens/widgets/CustomNavigationBar.dart';
 
 class GroceryListView extends StatefulWidget{
   @override
@@ -6,9 +9,10 @@ class GroceryListView extends StatefulWidget{
 }
 
 class _GroceryListViewState extends State<GroceryListView> {
+  List<Ingredient> ingredients = List<Ingredient>();
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
+    return CustomListView("Grocery List", ingredients, CustomNavigationBar(0));
   }
 }

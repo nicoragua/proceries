@@ -72,7 +72,7 @@ class _CustomListViewState extends State<CustomListView> {
           physics: ClampingScrollPhysics(),
         ),
         FlatButton(
-            child: Text("Add Ingredient"),
+            child: Text("Add"),
             onPressed: () => showDialog(
                 context: context,
                 builder: (context) {

@@ -16,9 +16,7 @@ class _RecipesViewState extends State<RecipesView> {
 
   @override
   Widget build(BuildContext context) {
-   return CustomListView(
-
-   );
+   return CustomListView();
   }
 
   add() {

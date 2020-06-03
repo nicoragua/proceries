@@ -1,33 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:proceries/screens/widgets/AddRecipeDialog.dart';
 
 class CustomListView extends StatefulWidget {
   final String title;
-  final List items;
-  final _navigationBar;
-  final VoidCallback add;
+  List items;
+  var navigationBar;
+  VoidCallback add;
 
-  CustomListView(this.title, this.items,this._navigationBar,this.add);
+  CustomListView({this.title, this.items,this.navigationBar,this.add});
 
   @override
-  _CustomListViewState createState() => _CustomListViewState(title,items,_navigationBar,add);
+  _CustomListViewState createState() => _CustomListViewState();
 }
 
 class _CustomListViewState extends State<CustomListView> {
-  String title;
   List items;
-  var _navigationBar;
+  var navigationBar;
   VoidCallback add;
-
-  _CustomListViewState(this.title, this.items, this._navigationBar,this.add);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(title),
+        title: Text(Widget.title),
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -70,7 +66,7 @@ class _CustomListViewState extends State<CustomListView> {
         ),
         FlatButton(
             child: Text("Add"),
-            onPressed: _add,
+            onPressed: add,
         ),
       ]),
       bottomNavigationBar: _navigationBar,

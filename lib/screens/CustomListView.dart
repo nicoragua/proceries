@@ -3,34 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:proceries/screens/widgets/AddRecipeDialog.dart';
 
 class CustomListView extends StatefulWidget {
-  String title;
-  List items;
-  var _navigationBar;
+  final String title;
+  final List items;
+  final _navigationBar;
+  final VoidCallback add;
 
-  CustomListView(this.title, this.items,this._navigationBar);
+  CustomListView(this.title, this.items,this._navigationBar,this.add);
 
   @override
-  _CustomListViewState createState() => _CustomListViewState(title,items,_navigationBar);
+  _CustomListViewState createState() => _CustomListViewState(title,items,_navigationBar,add);
 }
 
 class _CustomListViewState extends State<CustomListView> {
   String title;
   List items;
   var _navigationBar;
+  VoidCallback add;
 
-  var icon = Icon(Icons.delete);
-
-  final _nameController = new TextEditingController();
-  final _amountController = new TextEditingController();
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _amountController.dispose();
-    super.dispose();
-  }
-
-  _CustomListViewState(this.title, this.items, this._navigationBar);
+  _CustomListViewState(this.title, this.items, this._navigationBar,this.add);
 
   @override
   Widget build(BuildContext context) {
@@ -53,38 +43,35 @@ class _CustomListViewState extends State<CustomListView> {
         ListView.builder(
           itemCount: items.length,
           itemBuilder: (c, i) {
-            return Card(
-              child: ListTile(
-                    onTap: () {},
-                    title: Text(items[i].toString()),
-                    trailing: FlatButton(
-                      child: icon,
-                      onPressed: () {
-                        setState(() {
-                          items.removeAt(i);
-                        });
-                      },
+            return Dismissible(
+              key: UniqueKey(),
+              background: Container(
+                color: Colors.red,
+                child: Icon(
+                  Icons.delete,
+                  color: Colors.white,
+                ),
+              ),
+              onDismissed: (direction)  {
+                  setState(() {
+                    items.removeAt(i);
+                  });
+              },
+              child: Card(
+                child: ListTile(
+                      onTap: () {},
+                      title: Text(items[i].toString()),
                     ),
-                  ),
-              );
+                ),
+            );
           },
           shrinkWrap: true,
           physics: ClampingScrollPhysics(),
         ),
         FlatButton(
             child: Text("Add"),
-            onPressed: () => showDialog(
-                context: context,
-                builder: (context) {
-                  return AddRecipeDialog(
-                    nameController: this._nameController,
-                    amountController: this._amountController,
-                    ingredients: this.items,
-                    onClose: () {
-                      setState(() {});
-                    },
-                  );
-                })),
+            onPressed: _add,
+        ),
       ]),
       bottomNavigationBar: _navigationBar,
     );

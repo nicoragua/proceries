@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:proceries/models/Ingredient.dart';
+import 'package:proceries/models/Recipe.dart';
 import 'package:proceries/screens/AddRecipeView.dart';
 import 'package:proceries/screens/GroceryListView.dart';
 import 'package:proceries/screens/RecipesView.dart';
@@ -43,7 +45,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.school),
-          title: Text('null'),
+          title: Text('New Recipe'),
         ),
       ],
       currentIndex: _selectedIndex,
@@ -52,6 +54,9 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
     );
   }
 
+  //dummydata
+  Recipe recipe = Recipe("Nudeln", new List<Ingredient>());
+
   Widget getView(int index) {
     switch (index) {
       case 0:
@@ -59,7 +64,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
       case 1:
         return RecipesView();
       case 2:
-        return AddRecipeView();
+        return AddRecipeView(recipe);
     }
   }
 }

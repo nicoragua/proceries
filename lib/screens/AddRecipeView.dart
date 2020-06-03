@@ -6,7 +6,7 @@ import 'package:proceries/screens/widgets/CustomNavigationBar.dart';
 
 import 'CustomListView.dart';
 
-class AddRecipeView extends StatefulWidget{
+class AddRecipeView extends StatefulWidget {
   Recipe recipe;
 
   AddRecipeView(this.recipe);
@@ -33,22 +33,20 @@ class _AddRecipeViewState extends State<AddRecipeView> {
   @override
   Widget build(BuildContext context) {
     return CustomListView(
-      recipe.name, recipe.ingredients, CustomNavigationBar(2), add(),
-    );
-  }
-
-  VoidCallback add()  {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AddRecipeDialog(
-            nameController: _nameController,
-            amountController: _amountController,
-            ingredients: recipe.ingredients,
-            onClose: () {
-              setState(() {});
-            },
-          );
-        });
+        title: recipe.name,
+        items: recipe.ingredients,
+        navigationbar: CustomNavigationBar(2),
+        add: () => showDialog(
+            context: context,
+            builder: (context) {
+              return AddRecipeDialog(
+                nameController: _nameController,
+                amountController: _amountController,
+                ingredients: recipe.ingredients,
+                onClose: () {
+                  setState(() {});
+                },
+              );
+            }));
   }
 }

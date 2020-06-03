@@ -4,6 +4,7 @@ import 'package:proceries/models/Ingredient.dart';
 import 'package:proceries/models/Recipe.dart';
 import 'package:proceries/screens/AddRecipeView.dart';
 import 'package:proceries/screens/CustomListView.dart';
+import 'package:proceries/screens/widgets/CustomNavigationBar.dart';
 
 class RecipesView extends StatefulWidget {
 
@@ -13,18 +14,20 @@ class RecipesView extends StatefulWidget {
 
 class _RecipesViewState extends State<RecipesView> {
   List<Recipe> recipes = List<Recipe>();
+  Recipe recipe = new Recipe("Pasta", new List<Ingredient>());
 
   @override
   Widget build(BuildContext context) {
-   return CustomListView();
+   return CustomListView(
+     title: "Recipes",
+     items: recipes,
+     navigationbar: CustomNavigationBar(1),
+     add: () =>
+         Navigator.pushReplacement(
+       context,
+       MaterialPageRoute(builder: (context) => AddRecipeView(recipe)),
+     ),
+   );
   }
 
-  add() {
-    Recipe recipe = new Recipe("Pasta", new List<Ingredient>());
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => AddRecipeView(recipe)),
-    );
-  }
 }

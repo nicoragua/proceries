@@ -13,10 +13,12 @@ class _GroceryListViewState extends State<GroceryListView> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomListView("Grocery List", ingredients, CustomNavigationBar(0),add);
+    return CustomListView(
+      title: "grocery list",
+      items: ingredients,
+      navigationbar: CustomNavigationBar(0),
+    );
   }
 
-  void add()  {
 
-  }
 }

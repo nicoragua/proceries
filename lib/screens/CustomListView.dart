@@ -3,27 +3,29 @@ import 'package:flutter/material.dart';
 
 class CustomListView extends StatefulWidget {
   final String title;
-  List items;
-  var navigationBar;
-  VoidCallback add;
+  final VoidCallback add;
+  final List items;
+  final navigationbar;
 
-  CustomListView({this.title, this.items,this.navigationBar,this.add});
+  CustomListView({this.title, this.add, this.items, this.navigationbar});
 
   @override
-  _CustomListViewState createState() => _CustomListViewState();
+  _CustomListViewState createState() =>
+      _CustomListViewState(items: items, navigationBar: navigationbar);
 }
 
 class _CustomListViewState extends State<CustomListView> {
   List items;
   var navigationBar;
-  VoidCallback add;
+
+  _CustomListViewState({this.items, this.navigationBar});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(Widget.title),
+        title: Text(widget.title),
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -48,29 +50,28 @@ class _CustomListViewState extends State<CustomListView> {
                   color: Colors.white,
                 ),
               ),
-              onDismissed: (direction)  {
-                  setState(() {
-                    items.removeAt(i);
-                  });
+              onDismissed: (direction) {
+                setState(() {
+                  items.removeAt(i);
+                });
               },
               child: Card(
                 child: ListTile(
-                      onTap: () {},
-                      title: Text(items[i].toString()),
-                    ),
+                  onTap: () {},
+                  title: Text(items[i].toString()),
                 ),
+              ),
             );
           },
           shrinkWrap: true,
           physics: ClampingScrollPhysics(),
         ),
         FlatButton(
-            child: Text("Add"),
-            onPressed: add,
+          child: Text("Add"),
+          onPressed: widget.add,
         ),
       ]),
-      bottomNavigationBar: _navigationBar,
+      bottomNavigationBar: navigationBar,
     );
   }
 }
-
